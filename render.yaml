@@ -6,8 +6,7 @@ services:
     buildCommand: npm install && npx prisma generate
     startCommand: npm start
     envVars:
-      - key: NODE_ENV
-        value: production
+      - fromGroup: production-env
       - key: PORT
         value: 10000
       - key: DATABASE_URL
@@ -42,8 +41,6 @@ services:
         fromSecret: mikrotik_password
       - key: MIKROTIK_PORT
         fromSecret: mikrotik_port
-      - key: LOAN_WIFI_DURATION_HOURS
-        value: 1
 
   # WiFi Billing Frontend Service
   - type: web
@@ -52,23 +49,20 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     startCommand: cd frontend && npm start
     envVars:
-      - key: NODE_ENV
-        value: production
+      - fromGroup: production-env
       - key: NEXT_PUBLIC_API_BASE_URL
         fromService:
           type: web
           name: wifi-billing-api
           property: host
 
-  # PostgreSQL Database
-  - type: pserv
-    name: wifi-billing-db
-    runtime: postgres
-    ipAllowList: []  # Only accessible by other services in this project
+databases:
+  - name: wifi-billing-db
+    databaseName: wifi_billing
+    user: admin
 
-# Environment groups for different deployment environments
-environments:
-  - name: production
+envVarGroups:
+  - name: production-env
     envVars:
       - key: NODE_ENV
         value: production
