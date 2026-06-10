@@ -67,8 +67,8 @@ services:
     ipAllowList: []  # Only accessible by other services in this project
 
 # Environment groups for different deployment environments
-envVarGroups:
-  - name: production-env
+environments:
+  - name: production
     envVars:
       - key: NODE_ENV
         value: production
