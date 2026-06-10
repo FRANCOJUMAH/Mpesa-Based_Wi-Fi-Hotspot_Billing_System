@@ -6,7 +6,7 @@ services:
     buildCommand: npm install && npx prisma generate
     startCommand: npm start
     envVars:
-     - fromGroup: production-env
+      - fromGroup: production-env
       - key: PORT
         value: 10000
       - key: DATABASE_URL
