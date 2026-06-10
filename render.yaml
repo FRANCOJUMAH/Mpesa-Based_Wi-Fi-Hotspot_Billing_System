@@ -1,5 +1,4 @@
 services:
-  # WiFi Billing API Service
   - type: web
     name: wifi-billing-api
     runtime: node
@@ -42,7 +41,6 @@ services:
       - key: MIKROTIK_PORT
         fromSecret: mikrotik_port
 
-  # WiFi Billing Frontend Service
   - type: web
     name: wifi-billing-frontend
     runtime: node
