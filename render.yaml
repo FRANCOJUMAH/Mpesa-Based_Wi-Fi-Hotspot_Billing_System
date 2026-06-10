@@ -7,7 +7,7 @@ services:
     startCommand: npm start
     envVars:
       - fromGroup: production-env
-      - key: PORT
+      - key: NODE_ENV
         value: 10000
       - key: DATABASE_URL
         fromSecret: database_url
