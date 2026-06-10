@@ -6,6 +6,11 @@ services:
     buildCommand: npm install && npx prisma generate
     startCommand: npm start
     envVars:
+     - fromGroup: production-env
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromSecret: database_url
       - key: NODE_ENV
         value: production
       - key: PORT
@@ -67,8 +72,8 @@ services:
     ipAllowList: []  # Only accessible by other services in this project
 
 # Environment groups for different deployment environments
-environments:
-  - name: production
+envVarGroups:
+  - name: production-env
     envVars:
       - key: NODE_ENV
         value: production
